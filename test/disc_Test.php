@@ -29,6 +29,59 @@ class disc_Test extends TestCase {
 
 
 
+	/** Вызывается после каждого запуска тестового метода */
+	protected function _root_folder() {
+		$folder = __DIR__;
+		$folder = \str_replace('\\', '/', $folder);
+		$arr_folder = \explode('/', $folder);
+		array_pop($arr_folder);
+		return $folder = implode('/', $arr_folder) . '/test_folder';
+	}
+
+
+
+	/** Проверяет чистку пути */
+	public function test_clean_name() {
+		$control_result = $this->_root_folder() . '/test';
+		$result = $this->_test_object->clean_name($control_result);
+		$this->assertEquals($result, $control_result, 'Чистка пути 1 выполнена неверно');
+		$result = $this->_test_object->clean_name($control_result . '/');
+		$this->assertEquals($result, $control_result, 'Чистка пути 2 выполнена неверно');
+		$result = $this->_test_object->clean_name($control_result . '//');
+		$this->assertEquals($result, $control_result, 'Чистка пути 3 выполнена неверно');
+//		$result = $this->_test_object->clean_name(null);
+//		$this->assertEquals($result, $control_result, 'Чистка пути 4 выполнена неверно');
+	}
+
+
+
+	/** Проверяет информацию о папке */
+	public function test_info_folder() {
+		$result_control = [
+			'dirname' => $this->_root_folder(),
+			'basename' => 'test',
+			'filename' => 'test',
+		];
+		$result = $this->_test_object->info($this->_root_folder() . '/test');
+		$this->assertEquals($result, $result_control, 'Папка не создана');
+	}
+
+
+
+	/** Проверяет контроль существования папки */
+	public function test_info_file() {
+		$result_control = [
+			'dirname' => $this->_root_folder(),
+			'basename' => 'test.txt',
+			'extension' => 'txt',
+			'filename' => 'test',
+		];
+		$result = $this->_test_object->info($this->_root_folder() . '/test.txt');
+		$this->assertEquals($result, $result_control, 'Папка не создана');
+	}
+
+
+
 	/** Проверяет формирования объекта папки */
 	public function test_get_folder_object() {
 		$result = $this->_test_object->folder();
