@@ -5,7 +5,7 @@ namespace RusaDrako\disc;
 /**
  * Класс работы с директориями
  */
-abstract class disc {
+class disc {
 
 	private $_obj_folder          = null;
 	private $_obj_file            = null;

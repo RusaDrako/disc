@@ -5,7 +5,7 @@ namespace RusaDrako\disc;
 /**
  * Класс работы с файлами
  */
-abstract class file {
+class file {
 
 	/** Объеки disc*/
 	private $_obj_disc          = null;

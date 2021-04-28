@@ -5,7 +5,7 @@ namespace RusaDrako\disc;
 /**
  * Класс работы с директориями
  */
-abstract class folder {
+class folder {
 
 	/** Объеки disc*/
 	private $_obj_disc          = null;
@@ -16,7 +16,6 @@ abstract class folder {
 	public function __construct(disc $obj) {
 		$this->_obj_disc = $obj;
 	}
-
 
 
 
