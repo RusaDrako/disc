@@ -32,29 +32,17 @@ class folder_Test extends TestCase {
 		$folder = __DIR__;
 		$folder = \str_replace('\\', '/', $folder);
 		$arr_folder = \explode('/', $folder);
-		array_pop($arr_folder);
-		return $folder = implode('/', $arr_folder) . '/___test_folder/';
-	}
-
-
-
-	/** Проверяет чистку пути */
-	public function test_clean() {
-		$control_result = $this->_root_folder() . 'test';
-		$result = $this->_test_object->clean($control_result);
-		$this->assertEquals($result, $control_result, 'Чистка пути 1 выполнена неверно');
-		$result = $this->_test_object->clean($control_result . '/');
-		$this->assertEquals($result, $control_result, 'Чистка пути 2 выполнена неверно');
-		$result = $this->_test_object->clean($control_result . '//');
-		$this->assertEquals($result, $control_result, 'Чистка пути 3 выполнена неверно');
+		\array_pop($arr_folder);
+		return $folder = implode('/', $arr_folder) . '/test_folder';
 	}
 
 
 
 	/** Проверяет контроль существования папки */
 	public function test_exists_control() {
-		$result = $this->_test_object->exists_control($this->_root_folder() . 'test');
-		$this->assertTrue($result, 'Папка не создана');
+		$control_result = $this->_root_folder() . '/test';
+		$result = $this->_test_object->exists_control($this->_root_folder() . '/test');
+		$this->assertEquals($result, $control_result . '/', 'Папка не создана');
 	}
 
 
