@@ -29,19 +29,19 @@ class folder_Test extends TestCase {
 
 	/** Вызывается после каждого запуска тестового метода */
 	protected function _root_folder() {
-		$folder = __DIR__;
-		$folder = \str_replace('\\', '/', $folder);
-		$arr_folder = \explode('/', $folder);
+		$folder          = __DIR__;
+		$folder          = \str_replace('\\', '/', $folder);
+		$arr_folder      = \explode('/', $folder);
 		\array_pop($arr_folder);
-		return $folder = implode('/', $arr_folder) . '/test_folder';
+		return $folder   = implode('/', $arr_folder) . '/test_folder';
 	}
 
 
 
 	/** Проверяет контроль существования папки */
 	public function test_exists_control() {
-		$control_result = $this->_root_folder() . '/test';
-		$result = $this->_test_object->exists_control($this->_root_folder() . '/test');
+		$control_result   = $this->_root_folder() . '/test';
+		$result           = $this->_test_object->exists_control($this->_root_folder() . '/test');
 		$this->assertEquals($result, $control_result . '/', 'Папка не создана');
 	}
 
