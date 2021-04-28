@@ -70,6 +70,32 @@ class file {
 
 
 
+	/** Создаёт файл
+	 * @param string $file_from Полный путь к файлу
+	 * @param string $data Данные для файла
+	 */
+	public function new(string $file_name, $data) {
+		if (!file_put_contents($file_name, $data)) {
+			throw new \Exception("Не удалось записать данные в файл: {$file_name}", 1);
+			return false;
+		};
+		return $file_name;
+
+		if (!$fp = fopen($file_name, 'w')) {
+			throw new \Exception("Не удалось открыть файл для записи: {$file_name}", 1);
+			return false;
+		}
+		if (!fwrite($fp, $data)) {
+			fclose($fp);
+			throw new \Exception("Не удалось записать данные в файл: {$file_name}", 1);
+			return false;
+		};
+		fclose($fp);
+		return $file_name;
+	}
+
+
+
 	/** Перемещает файл из одной папки в другую
 	 * @param string $file_from Полный путь к исходному файлу
 	 * @param string $file_to Полный путь к новому файлу
