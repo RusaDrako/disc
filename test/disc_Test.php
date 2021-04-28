@@ -19,7 +19,7 @@ class disc_Test extends TestCase {
 
 	/** Вызывается перед каждым запуском тестового метода */
 	protected function setUp() : void {
-		$this->_test_object = new RD_Obj_Disc();
+		$this->_test_object = new RD_Disc();
 	}
 
 

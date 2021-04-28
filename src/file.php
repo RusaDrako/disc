@@ -19,7 +19,7 @@ class file {
 
 
 
-	/** Проверяет существование указанной папки и создаёт при отсутствии
+	/** Проверяет существование указанного файла и находит ближайшее свободное имя файла
 	 * @param string $folder Полный путь директории
 	 * @param string $basename Имя файла
 	 * @param string $extension Расширение файла
@@ -27,7 +27,7 @@ class file {
 	public function control_name_num(string $folder, string $basename, string $extension) {
 		$folder = $this->_obj_disc->folder()->exists_control($folder);
 		$i = 0;
-		$file = "{$folder}{$basename}_$i.{$extension}";
+		$file = "{$folder}{$basename}_{$i}.{$extension}";
 		while (\file_exists($file)) {
 			$i = $i + 1;
 			$file = "{$folder}{$basename}_$i.{$extension}";
@@ -70,7 +70,7 @@ class file {
 
 
 
-	/** Создаёт файл
+	/** Создаёт файл и заполняет данными
 	 * @param string $file_from Полный путь к файлу
 	 * @param string $data Данные для файла
 	 */

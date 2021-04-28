@@ -9,11 +9,25 @@ class disc {
 
 	private $_obj_folder          = null;
 	private $_obj_file            = null;
+	# Объект класса
+	private static $_object   = null;
 
 
 
 	/** */
 	public function __construct() {}
+
+
+
+	/** Вызов объекта
+	* @return object Объект класса
+	*/
+	public static function call(...$args) {
+		if (null === self::$_object) {
+			self::$_object = new static(...$args);
+		}
+		return self::$_object;
+	}
 
 
 
@@ -26,7 +40,7 @@ class disc {
 		# Чистим сдвоенные слэши
 		$item = preg_replace('/(\/)+/ui', '/', $item);
 		# Если есть закрывающий слэш - удаляем
-		if ($item[-1] === '/') {
+		if (substr($item, -1) == '/') {
 			$item = \function_exists('mb_substr')
 					? \mb_substr($item, 0, -1)
 					: \substr($item, 0, -1);
